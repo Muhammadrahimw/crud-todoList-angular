@@ -1,0 +1,47 @@
+<div class="todo-container">
+	<h1>My Todo List</h1>
+
+	<div class="todo-input">
+		<input
+			[(ngModel)]="newTask"
+			type="text"
+			placeholder="Add new task..."
+			[placeholder]="isEditTask ? 'Edit the task...' : 'Add new task...'" />
+		<button (click)="addTask()" type="button">
+			{{ isEditTask ? "Edit" : "Add" }}
+		</button>
+	</div>
+
+	<ul class="todo-list">
+		<li
+			*ngFor="let task of tasksList"
+			[id]="task.id"
+			[ngClass]="{
+				'todo-item': true,
+				`completed`: task.completed,
+				'todo-item-dark': isEditTask && task.id === editTaskId
+			}">
+			<input
+				placeholder="checkbox"
+				[checked]="task.completed"
+				type="checkbox"
+				style="cursor: pointer"
+				(change)="toggleTask(task)" />
+			<span>{{ task.title }}</span>
+			<button
+				title="Delete task"
+				(click)="editTask(task)"
+				type="button"
+				class="edit-btn">
+				✎
+			</button>
+			<button
+				title="Edit task"
+				(click)="deleteTask(task.id)"
+				type="button"
+				class="delete-btn">
+				✕
+			</button>
+		</li>
+	</ul>
+</div>

@@ -1,0 +1,41 @@
+<h2 mat-dialog-title>{{data?.id ? `Edit food` : `Add new food`}}</h2>
+<mat-dialog-content class="!w-[30em]">
+	<div class="flex flex-col gap-2 w-full">
+		<input
+			[(ngModel)]="data.name"
+			class="w-full border rounded border-gray-400 py-2 px-3 outline-gray-500"
+			type="text"
+			placeholder="name" />
+		<input
+			[(ngModel)]="data.category"
+			class="w-full border rounded border-gray-400 py-2 px-3 outline-gray-500"
+			type="text"
+			placeholder="category" />
+		<input
+			[(ngModel)]="data.calories"
+			class="w-full border rounded border-gray-400 py-2 px-3 outline-gray-500"
+			type="number"
+			placeholder="calories" />
+		<input
+			[(ngModel)]="data.price"
+			class="w-full border rounded border-gray-400 py-2 px-3 outline-gray-500"
+			type="number"
+			placeholder="price" />
+	</div>
+</mat-dialog-content>
+<mat-dialog-actions class="flex gap-3">
+	<button
+		class="border py-1 px-3 rounded border-gray-300 cursor-pointer hover:bg-gray-200"
+		type="button"
+		matButton
+		mat-dialog-close>
+		Close
+	</button>
+	<button
+		class="border py-1 px-3 rounded border-gray-300 cursor-pointer hover:bg-gray-200"
+		type="button"
+		(click)="onSave()"
+		matButton>
+		{{data?.id ? `Edit` : `Add`}}
+	</button>
+</mat-dialog-actions>
