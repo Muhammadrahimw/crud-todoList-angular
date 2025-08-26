@@ -1,4 +1,9 @@
-import {AfterViewInit, Component, ViewChild} from "@angular/core";
+import {
+	AfterViewInit,
+	BootstrapOptions,
+	Component,
+	ViewChild,
+} from "@angular/core";
 import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
 import {MatSort, MatSortModule} from "@angular/material/sort";
 import {MatTableDataSource, MatTableModule} from "@angular/material/table";
@@ -9,6 +14,7 @@ import {FoodService} from "../../services/food.service";
 import {NotificationService} from "../../../../shared/services/notification.service";
 import {MatDialog} from "@angular/material/dialog";
 import {FoodDialogComponent} from "../food-dialog/food-dialog.component";
+import {CommonModule} from "@angular/common";
 
 @Component({
 	selector: "app-food-table",
@@ -18,6 +24,7 @@ import {FoodDialogComponent} from "../food-dialog/food-dialog.component";
 		MatTableModule,
 		MatSortModule,
 		MatPaginatorModule,
+		CommonModule,
 	],
 	templateUrl: "./food-table.component.html",
 	styleUrl: "./food-table.component.css",
@@ -31,6 +38,7 @@ export class TableOverviewExample implements AfterViewInit {
 		"price",
 		"actions",
 	];
+	isLoading: boolean = true;
 	dataSource = new MatTableDataSource<Food>([]);
 
 	constructor(
@@ -40,6 +48,7 @@ export class TableOverviewExample implements AfterViewInit {
 	) {
 		this.foodService.getFoods().subscribe((data) => {
 			this.dataSource.data = data;
+			this.isLoading = false;
 		});
 	}
 
@@ -49,7 +58,7 @@ export class TableOverviewExample implements AfterViewInit {
 	openDialog(food: Food) {
 		this.dialog.open(FoodDialogComponent, {
 			width: "400px",
-			data: {food},
+			data: food,
 		});
 	}
 

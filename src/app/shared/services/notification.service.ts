@@ -11,7 +11,7 @@ export class NotificationService {
 		this.snackBar.open(message, "OK", {
 			duration: 3000,
 			horizontalPosition: "right",
-			verticalPosition: "top",
+			verticalPosition: "bottom",
 			panelClass: ["snackbar-success"],
 		});
 	}
@@ -20,7 +20,7 @@ export class NotificationService {
 		this.snackBar.open(message, "Yopish", {
 			duration: 3000,
 			horizontalPosition: "right",
-			verticalPosition: "top",
+			verticalPosition: "bottom",
 			panelClass: ["snackbar-error"],
 		});
 	}
