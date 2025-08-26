@@ -1,1 +1,9 @@
-<router-outlet />
+<mat-tab-group
+	class="px-6 pt-2"
+	[selectedIndex]="selectedIndex"
+	(selectedIndexChange)="onTabChange($event)">
+	<mat-tab label="Foods"></mat-tab>
+	<mat-tab label="Todos"></mat-tab>
+</mat-tab-group>
+
+<router-outlet></router-outlet>
